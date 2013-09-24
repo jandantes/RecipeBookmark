@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/txt_recipeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#040404"
+        android:textSize="15dip"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/txt_recipeCourse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#040404"
+        android:textSize="10dip"
+        android:layout_below="@id/txt_recipeName"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/txt_recipeUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#040404"
+        android:textSize="8dip"
+        android:layout_below="@id/txt_recipeCourse"/>
+    <TextView
+        android:id="@+id/txt_recipeIngredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginRight="5dip"
+        android:textSize="10dip"
+        android:textColor="#10bcc9"/>
+
+</RelativeLayout>
