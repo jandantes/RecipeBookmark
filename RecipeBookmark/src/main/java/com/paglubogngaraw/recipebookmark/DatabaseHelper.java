@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_RECIPE_COURSE = "recipeCourse";
     public static final String COL_RECIPE_INGREDIENT = "recipeIngredient";
     private static final String DATABASE_NAME = "recipe_bookmark.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -30,8 +30,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COL_RECIPE_NAME + " TEXT NOT NULL,"
             + COL_RECIPE_URL + " TEXT NOT NULL,"
-            + COL_RECIPE_COURSE + " TEXT NOT NULL,"
-            + COL_RECIPE_INGREDIENT + " TEXT NOT NULL"
+            + COL_RECIPE_COURSE + " TEXT,"
+            + COL_RECIPE_INGREDIENT + " TEXT"
             + ");"
         );
     }
