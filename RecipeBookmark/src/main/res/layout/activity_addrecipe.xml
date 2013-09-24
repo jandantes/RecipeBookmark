@@ -29,17 +29,6 @@
         android:layout_weight="1"
         android:autoLink="web" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/txt_recipeNotes"
-        android:layout_below="@+id/txt_recipeUrl"
-        android:layout_alignLeft="@+id/txt_recipeUrl"
-        android:layout_marginTop="10dp"
-        android:hint="Notes" />
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
