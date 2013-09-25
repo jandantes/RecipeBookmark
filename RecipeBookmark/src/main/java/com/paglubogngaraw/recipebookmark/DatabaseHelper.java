@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import android.util.Patterns;
 
 /**
  * Created by jan.dantes on 9/23/13.
@@ -62,7 +63,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     protected void validate(ContentValues values) throws NotValidException{
         if(!values.containsKey(COL_RECIPE_NAME) || values.getAsString(COL_RECIPE_NAME) == null || values.getAsString(COL_RECIPE_NAME).isEmpty()){
-            throw new NotValidException("Recipe Name must be set");
+            throw new NotValidException("Recipe Name must be set.");
+        }
+        if(!values.containsKey(COL_RECIPE_URL) || values.getAsString(COL_RECIPE_URL) == null || values.getAsString(COL_RECIPE_URL).isEmpty()){
+            throw new NotValidException("Recipe Address must be set.");
+        }
+        if(!Patterns.WEB_URL.matcher(values.getAsString(COL_RECIPE_URL)).matches()){
+            throw new NotValidException("Recipe Address is invalid!");
         }
     }
 
