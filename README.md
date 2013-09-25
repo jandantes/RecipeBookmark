@@ -1,4 +1,4 @@
 RecipeBookmark
 ==============
 
-Recipe bookmarking Android app as per wife's request...
+Android (API 17) Recipe bookmarking app.
