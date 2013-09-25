@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="courses_array">
+        <item>Appetizers</item>
+        <item>Beverages</item>
+        <item>Breakfasts</item>
+        <item>Desserts</item>
+        <item>Lunch</item>
+        <item>Main Dishes</item>
+        <item>Side Dishes</item>
+        <item>Snacks</item>
+    </string-array>
+</resources>
