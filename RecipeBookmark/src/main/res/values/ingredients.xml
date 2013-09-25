@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ingredients_array">
+        <item>Beans</item>
+        <item>Beef</item>
+        <item>Chicken</item>
+        <item>Fish</item>
+        <item>Fruit</item>
+        <item>Pasta</item>
+        <item>Pork</item>
+        <item>Rice</item>
+        <item>Vegetables</item>
+    </string-array>
+</resources>
