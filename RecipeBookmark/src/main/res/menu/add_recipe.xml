@@ -3,4 +3,8 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
+    <item android:id="@+id/action_addRecipeSave"
+        android:title="@string/menu_addRecipeSave"
+        android:icon="@drawable/ic_action_done"
+        android:showAsAction="always|withText" />
 </menu>

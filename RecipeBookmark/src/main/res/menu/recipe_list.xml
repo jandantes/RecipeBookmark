@@ -4,7 +4,7 @@
         android:orderInCategory="100"
         android:showAsAction="never" />
     <item android:id="@+id/action_addRecipe"
-        android:title="Add"
+        android:title="@string/menu_addRecipe"
         android:icon="@drawable/ic_action_new"
         android:showAsAction="always" />
 </menu>
