@@ -1,9 +1,12 @@
 package com.paglubogngaraw.recipebookmark;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -67,6 +70,66 @@ public class RecipeList extends Activity {
             }
         });
 
+        listView_recipeList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, final View view, final int i, final long l) {
+                TextView itemName = (TextView) view.findViewById(R.id.txt_recipeName);
+                final String newItemName = itemName.getText().toString();
+
+                view.setSelected(true);
+                view.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));
+
+                RecipeList.this.startActionMode(new ActionMode.Callback() {
+                    @Override
+                    public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                        MenuInflater inflater = actionMode.getMenuInflater();
+                        inflater.inflate(R.menu.recipe_list_contextual, menu);
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.action_deleteRecipe:
+                                //Toast.makeText(getApplicationContext(), "Long press: " + l, Toast.LENGTH_SHORT).show();
+                                new AlertDialog.Builder(RecipeList.this)
+                                        .setTitle("Delete Recipe")
+                                        .setMessage("Are you sure you want to delete "+ newItemName + "?")
+                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
+                                            public void onClick(DialogInterface dialog, int whichButton){
+                                                deleteRecipe(l);
+                                                RecipeList.this.recreate();
+                                            }
+                                        })
+                                        .setNegativeButton(android.R.string.no, null).show();
+                                actionMode.finish();
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                    @Override
+                    public void onDestroyActionMode(ActionMode actionMode) {
+                        view.setSelected(false);
+                        view.setBackgroundColor(getResources().getColor(android.R.color.white));
+                    }
+                });
+                return true;
+            }
+        });
+
+    }
+
+    private void deleteRecipe(Long id){
+        mDatabaseHelper = new DatabaseHelper(this);
+        mDatabaseHelper.delete(DatabaseHelper.TABLE_RECIPES, id);
+        mDatabaseHelper.close();
     }
 
 
