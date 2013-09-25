@@ -7,15 +7,22 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class RecipeList extends Activity {
+
+    //declarations
     private DatabaseHelper mDatabaseHelper;
     private ListView listView_recipeList;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipelist);
+        setTitle("My Recipes");
+        getIntent();
 
         String[] from = new String[]{
             DatabaseHelper.COL_RECIPE_NAME,
@@ -29,14 +36,36 @@ public class RecipeList extends Activity {
                 R.id.txt_recipeCourse,
                 R.id.txt_recipeIngredient
         };
+
+        //DatabaseHelper.java
         mDatabaseHelper = new DatabaseHelper(this);
 
+        //Cursor - DatabaseHelper.java(Table name, Table column sorter)
         Cursor c = mDatabaseHelper.query(DatabaseHelper.TABLE_RECIPES,DatabaseHelper.COL_RECIPE_NAME);
+
+        //Custom adapter: list view with multiple TextViews
         final RecipeItemAdapter adapter = new RecipeItemAdapter(this, R.layout.listview_row, c, from, to);
+
+        //ListView using RecipeItemAdapter
         listView_recipeList = (ListView) findViewById(R.id.listView_recipeList);
         listView_recipeList.setAdapter(adapter);
         listView_recipeList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView_recipeList.setSelector(R.drawable.list_selector);
+
+        listView_recipeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> adapterView,final View view,final int i,final long l) {
+                TextView name = (TextView) view.findViewById(R.id.txt_recipeName);
+                TextView url = (TextView) view.findViewById(R.id.txt_recipeUrl);
+                String itemUrl = url.getText().toString();
+                String itemName = name.getText().toString();
+                //Toast.makeText(getApplicationContext(), "View: " + item, Toast.LENGTH_LONG).show();
+                Intent viewRecipe = new Intent(RecipeList.this, ViewRecipe.class);
+                viewRecipe.putExtra("url", itemUrl);
+                viewRecipe.putExtra("name", itemName);
+                startActivity(viewRecipe);
+            }
+        });
 
     }
 
