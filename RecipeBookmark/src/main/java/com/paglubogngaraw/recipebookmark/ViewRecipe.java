@@ -1,6 +1,8 @@
 package com.paglubogngaraw.recipebookmark;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.KeyEvent;
@@ -47,17 +49,31 @@ public class ViewRecipe extends Activity {
             }
         });
 
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setUserAgentString("Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/20 Safari/537.31");
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setBuiltInZoomControls(true);
-        webSettings.setDisplayZoomControls(false);
-        webSettings.setUseWideViewPort(true);
+        WebSettings ws = webView.getSettings();
+        ws.setAppCacheMaxSize(5 * 1024 * 1024); //5MB
+        ws.setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath());
+        ws.setAllowFileAccess(true);
+        ws.setAppCacheEnabled(true);
+        ws.setCacheMode(WebSettings.LOAD_DEFAULT); //load online site by default
+        ws.setJavaScriptEnabled(true);
+        ws.setBuiltInZoomControls(true);
+        ws.setDisplayZoomControls(false);
+        ws.setUseWideViewPort(true);
+
+        if(!isNetworkAvailable()){ //load offline site
+            ws.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        }
 
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(recipeUrl);
         ViewRecipe.this.progress.setProgress(0);
 
+    }
+
+    private boolean isNetworkAvailable(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService( CONNECTIVITY_SERVICE );
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null;
     }
 
     public void setValue(int progress){
