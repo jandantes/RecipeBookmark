@@ -100,7 +100,7 @@ public class RecipeList extends Activity {
                                 new AlertDialog.Builder(RecipeList.this)
                                         .setTitle(getString(R.string.title_dialog_delete_recipe))
                                         .setMessage(getString(R.string.message_delete) + newItemName + "?")
-                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .setIcon(R.drawable.ic_dialog_warning)
                                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
                                             public void onClick(DialogInterface dialog, int whichButton){
                                                 deleteRecipe(l);
