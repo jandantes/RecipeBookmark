@@ -57,7 +57,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         private List<Fragment> fragments;
 
-        final int NUM_ITEMS = 1; // number of tabs
+        final int NUM_ITEMS = 3; // number of tabs
         public CollectionPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
             super(fm);
             this.fragments = fragments;
@@ -94,6 +94,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     private List<Fragment> getFragments(){
         List<Fragment> fList = new ArrayList<Fragment>();
         fList.add(new RecipeList());
+        fList.add(new CoursesList());
+        fList.add(new IngredientsList());
         return fList;
     }
 
