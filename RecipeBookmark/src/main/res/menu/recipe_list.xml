@@ -3,8 +3,15 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
+
+    <item android:id="@+id/action_searchRecipe"
+        android:title="@string/menu_searchRecipe"
+        android:icon="@drawable/ic_action_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:showAsAction="ifRoom" />
+
     <item android:id="@+id/action_addRecipe"
         android:title="@string/menu_addRecipe"
         android:icon="@drawable/ic_action_new"
-        android:showAsAction="always" />
+        android:showAsAction="ifRoom" />
 </menu>
