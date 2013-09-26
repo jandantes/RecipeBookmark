@@ -23,7 +23,7 @@ public class AddRecipe extends Activity implements DialogInterface.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addrecipe);
-        setTitle("Add New Recipe");
+        setTitle(getString(R.string.title_activity_add_recipe));
 
         //define spinners
         coursesSpinner = (Spinner) findViewById(R.id.spinner_recipeCourse);
