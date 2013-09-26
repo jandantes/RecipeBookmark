@@ -10,11 +10,15 @@
     <string name="menu_share">Share</string>
     <string name="menu_addRecipe">Add</string>
     <string name="menu_addRecipeSave">Save</string>
-
+    <string name="menu_searchRecipe">Search</string>
 
     <string name="title_activity_add_recipe">Add New Recipe</string>
     <string name="title_activity_recipe_list">My Recipes</string>
     <string name="title_activity_view_recipe">View Recipe</string>
+    <string name="title_activity_courses">Courses</string>
+    <string name="title_activity_ingredients">Ingredients</string>
+
+    <string name="title_dialog_delete_recipe">Delete Recipe</string>
 
     <string name="hint_addRecipe_recipeName">Recipe Name</string>
     <string name="hint_addRecipe_recipeUrl">URL http://</string>
@@ -24,6 +28,8 @@
     <string name="label_recipeIngredient">Main Ingredient</string>
 
     <string name="char_divider">|</string>
+
+    <string name="message_delete">Are you sure you want to delete&#160;</string>
 
 
 </resources>
