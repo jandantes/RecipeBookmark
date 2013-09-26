@@ -24,7 +24,7 @@ public class RecipeList extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipelist);
-        setTitle("My Recipes");
+        setTitle(getString(R.string.title_activity_recipe_list));
         getIntent();
 
         String[] from = new String[]{
@@ -98,8 +98,8 @@ public class RecipeList extends Activity {
                             case R.id.action_deleteRecipe:
                                 //Toast.makeText(getApplicationContext(), "Long press: " + l, Toast.LENGTH_SHORT).show();
                                 new AlertDialog.Builder(RecipeList.this)
-                                        .setTitle("Delete Recipe")
-                                        .setMessage("Are you sure you want to delete "+ newItemName + "?")
+                                        .setTitle(getString(R.string.title_dialog_delete_recipe))
+                                        .setMessage(getString(R.string.message_delete) + newItemName + "?")
                                         .setIcon(android.R.drawable.ic_dialog_alert)
                                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
                                             public void onClick(DialogInterface dialog, int whichButton){
