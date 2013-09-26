@@ -28,7 +28,6 @@ public class AddRecipe extends Activity implements DialogInterface.OnClickListen
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         //define spinners
         coursesSpinner = (Spinner) findViewById(R.id.spinner_recipeCourse);
         ingredientSpinner = (Spinner) findViewById(R.id.spinner_recipeIngredient);
@@ -87,9 +86,9 @@ public class AddRecipe extends Activity implements DialogInterface.OnClickListen
         values.put(rec.COL_RECIPE_INGREDIENT, ingredient);
         try {
             rec.insert(DatabaseHelper.TABLE_RECIPES, values);
-            Intent loadRecipeList = new Intent(AddRecipe.this, RecipeList.class);
-            loadRecipeList.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            AddRecipe.this.startActivity(loadRecipeList);
+            Intent loadMainActivity = new Intent(AddRecipe.this, MainActivity.class);
+            loadMainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            AddRecipe.this.startActivity(loadMainActivity);
         }catch (DatabaseHelper.NotValidException e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
