@@ -1,5 +1,6 @@
 package com.paglubogngaraw.recipebookmark;
 
+import android.app.ActionBar;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +25,9 @@ public class AddRecipe extends Activity implements DialogInterface.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addrecipe);
         setTitle(getString(R.string.title_activity_add_recipe));
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         //define spinners
         coursesSpinner = (Spinner) findViewById(R.id.spinner_recipeCourse);
@@ -59,7 +63,9 @@ public class AddRecipe extends Activity implements DialogInterface.OnClickListen
                 String course = coursesSpinner.getSelectedItem().toString();
                 String ingredient = ingredientSpinner.getSelectedItem().toString();
                 addRecipe(nameText,urlText,course,ingredient);
-
+                break;
+            case android.R.id.home:
+                onBackPressed();
                 break;
             default:
                 break;
