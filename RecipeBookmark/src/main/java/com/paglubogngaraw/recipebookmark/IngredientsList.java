@@ -29,6 +29,7 @@ public class IngredientsList extends Fragment {
                 getActivity(),
                 R.layout.listview_row_ingredients,
                 R.id.txt_ingredientName,
+                R.id.txt_ingredientCount,
                 getResources().getStringArray(R.array.ingredients_array)
         );
         courseList.setAdapter(adapter);

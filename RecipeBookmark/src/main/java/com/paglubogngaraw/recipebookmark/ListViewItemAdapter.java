@@ -2,6 +2,8 @@ package com.paglubogngaraw.recipebookmark;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +15,52 @@ import android.widget.TextView;
  */
 public class ListViewItemAdapter extends BaseAdapter {
     public String title[];
-    private int layout, titleId;
+    private int layout, titleId, itemCount;
     //public String description[];
     public Activity context;
     public LayoutInflater inflater;
+    private DatabaseHelper mDatabaseHelper;
 
     //public ListViewItemAdapter(Activity context,String[] title, String[] description) {
-    public ListViewItemAdapter(Activity context,int layout,int titleId, String[] title) {
+    public ListViewItemAdapter(Activity context,int layout,int titleId, int itemCount, String[] title) {
         super();
         this.layout = layout;
         this.context = context;
         this.title = title;
         this.titleId = titleId;
+        this.itemCount = itemCount;
         //this.description = description;
         this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+        mDatabaseHelper = new DatabaseHelper(context);
+        SQLiteDatabase db = mDatabaseHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT count(*) FROM recipes", null);
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        cursor.close();
+
+        if(convertView==null){
+            holder = new ViewHolder();
+            convertView = inflater.inflate(layout, null);
+            //holder.imgViewLogo = (ImageView) convertView.findViewById(R.id.imgViewLogo);
+            holder.txtViewTitle = (TextView) convertView.findViewById(titleId);
+            holder.txtViewCount = (TextView) convertView.findViewById(itemCount);
+            //holder.txtViewDescription = (TextView) convertView.findViewById(R.id.txtViewDescription);
+            convertView.setTag(holder);
+        }
+        else
+            holder=(ViewHolder)convertView.getTag();
+
+        //holder.imgViewLogo.setImageResource(R.drawable.icon);
+        holder.txtViewTitle.setText(title[position]);
+        holder.txtViewCount.setText(Integer.toString(count));
+        //holder.txtViewCount.setText(Integer.toString(count));
+        //holder.txtViewDescription.setText(description[position]);
+
+        return convertView;
     }
 
     @Override
@@ -48,29 +82,9 @@ public class ListViewItemAdapter extends BaseAdapter {
     {
         //ImageView imgViewLogo;
         TextView txtViewTitle;
+        TextView txtViewCount;
         //TextView txtViewDescription;
     }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if(convertView==null)
-        {
-            holder = new ViewHolder();
-            convertView = inflater.inflate(layout, null);
-            //holder.imgViewLogo = (ImageView) convertView.findViewById(R.id.imgViewLogo);
-            holder.txtViewTitle = (TextView) convertView.findViewById(titleId);
-            //holder.txtViewDescription = (TextView) convertView.findViewById(R.id.txtViewDescription);
-            convertView.setTag(holder);
-        }
-        else
-            holder=(ViewHolder)convertView.getTag();
-
-        //holder.imgViewLogo.setImageResource(R.drawable.icon);
-        holder.txtViewTitle.setText(title[position]);
-        //holder.txtViewDescription.setText(description[position]);
-
-        return convertView;
-    }
 
 }

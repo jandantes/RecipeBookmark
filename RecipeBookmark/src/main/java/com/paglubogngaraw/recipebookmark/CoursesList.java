@@ -29,6 +29,7 @@ public class CoursesList extends Fragment {
                 getActivity(),
                 R.layout.listview_row_courses,
                 R.id.txt_courseName,
+                R.id.txt_courseCount,
                 getResources().getStringArray(R.array.courses_array)
         );
         courseList.setAdapter(adapter);
