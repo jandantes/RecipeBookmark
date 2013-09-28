@@ -14,22 +14,20 @@ import android.widget.TextView;
  * Created by jan.dantes on 9/27/13.
  */
 public class ListViewItemAdapter extends BaseAdapter {
-    public String title[];
+    public String title[], type;
     private int layout, titleId, itemCount;
-    //public String description[];
     public Activity context;
     public LayoutInflater inflater;
     private DatabaseHelper mDatabaseHelper;
 
-    //public ListViewItemAdapter(Activity context,String[] title, String[] description) {
-    public ListViewItemAdapter(Activity context,int layout,int titleId, int itemCount, String[] title) {
+    public ListViewItemAdapter(Activity context,int layout,int titleId, int itemCount, String type, String[] title) {
         super();
         this.layout = layout;
         this.context = context;
         this.title = title;
         this.titleId = titleId;
         this.itemCount = itemCount;
-        //this.description = description;
+        this.type = type;
         this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
@@ -37,7 +35,7 @@ public class ListViewItemAdapter extends BaseAdapter {
         ViewHolder holder;
         mDatabaseHelper = new DatabaseHelper(context);
         SQLiteDatabase db = mDatabaseHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT count(*) FROM recipes", null);
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM recipes WHERE "+ type + " = '" + title[position] + "'", null);
         cursor.moveToFirst();
         int count = cursor.getInt(0);
         cursor.close();
@@ -48,7 +46,6 @@ public class ListViewItemAdapter extends BaseAdapter {
             //holder.imgViewLogo = (ImageView) convertView.findViewById(R.id.imgViewLogo);
             holder.txtViewTitle = (TextView) convertView.findViewById(titleId);
             holder.txtViewCount = (TextView) convertView.findViewById(itemCount);
-            //holder.txtViewDescription = (TextView) convertView.findViewById(R.id.txtViewDescription);
             convertView.setTag(holder);
         }
         else
@@ -57,8 +54,6 @@ public class ListViewItemAdapter extends BaseAdapter {
         //holder.imgViewLogo.setImageResource(R.drawable.icon);
         holder.txtViewTitle.setText(title[position]);
         holder.txtViewCount.setText(Integer.toString(count));
-        //holder.txtViewCount.setText(Integer.toString(count));
-        //holder.txtViewDescription.setText(description[position]);
 
         return convertView;
     }
@@ -83,7 +78,6 @@ public class ListViewItemAdapter extends BaseAdapter {
         //ImageView imgViewLogo;
         TextView txtViewTitle;
         TextView txtViewCount;
-        //TextView txtViewDescription;
     }
 
 
