@@ -14,7 +14,7 @@ import android.widget.TextView;
  * Created by jan.dantes on 9/27/13.
  */
 public class ListViewItemAdapter extends BaseAdapter {
-    public String title[], type;
+    public String title[], type, total;
     private int layout, titleId, itemCount;
     public Activity context;
     public LayoutInflater inflater;
@@ -43,7 +43,6 @@ public class ListViewItemAdapter extends BaseAdapter {
         if(convertView==null){
             holder = new ViewHolder();
             convertView = inflater.inflate(layout, null);
-            //holder.imgViewLogo = (ImageView) convertView.findViewById(R.id.imgViewLogo);
             holder.txtViewTitle = (TextView) convertView.findViewById(titleId);
             holder.txtViewCount = (TextView) convertView.findViewById(itemCount);
             convertView.setTag(holder);
@@ -51,9 +50,9 @@ public class ListViewItemAdapter extends BaseAdapter {
         else
             holder=(ViewHolder)convertView.getTag();
 
-        //holder.imgViewLogo.setImageResource(R.drawable.icon);
+        total = Integer.toString(count);
         holder.txtViewTitle.setText(title[position]);
-        holder.txtViewCount.setText(Integer.toString(count));
+        holder.txtViewCount.setText("("+ total +")");
 
         return convertView;
     }
@@ -73,12 +72,8 @@ public class ListViewItemAdapter extends BaseAdapter {
         return 0;
     }
 
-    public static class ViewHolder
-    {
-        //ImageView imgViewLogo;
+    public static class ViewHolder {
         TextView txtViewTitle;
         TextView txtViewCount;
     }
-
-
 }
