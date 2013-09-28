@@ -30,6 +30,8 @@ public class ViewRecipe extends Activity {
         progress = (ProgressBar) findViewById(R.id.progressBar1);
         progress.setMax(100);
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         String recipeName = getIntent().getStringExtra("name");
         String recipeUrl = getIntent().getStringExtra("url");
         setTitle(recipeName);
