@@ -17,6 +17,7 @@
     <string name="title_activity_view_recipe">View Recipe</string>
     <string name="title_activity_courses">Courses</string>
     <string name="title_activity_ingredients">Ingredients</string>
+    <string name="title_activity_settings">Settings</string>
 
     <string name="title_dialog_delete_recipe">Delete Recipe</string>
 
@@ -26,6 +27,8 @@
     <string name="label_recipeName">Recipe</string>
     <string name="label_recipeCourse">Course</string>
     <string name="label_recipeIngredient">Main Ingredient</string>
+    <string name="label_settings_offline">Offline Viewing</string>
+    <string name="label_settings_offline_title">Enable Offline Viewing</string>
 
     <string name="char_divider">|</string>
 
