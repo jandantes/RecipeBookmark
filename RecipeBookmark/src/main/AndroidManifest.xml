@@ -33,6 +33,9 @@
             android:name=".AddRecipe"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+            android:name=".Settings">
+        </activity>
     </application>
 
 </manifest>
