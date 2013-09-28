@@ -30,6 +30,7 @@ public class CoursesList extends Fragment {
                 R.layout.listview_row_courses,
                 R.id.txt_courseName,
                 R.id.txt_courseCount,
+                "recipeCourse",
                 getResources().getStringArray(R.array.courses_array)
         );
         courseList.setAdapter(adapter);
