@@ -1,11 +1,14 @@
 package com.paglubogngaraw.recipebookmark;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Created by jan.dantes on 9/27/13.
@@ -34,6 +37,17 @@ public class IngredientsList extends Fragment {
                 getResources().getStringArray(R.array.ingredients_array)
         );
         courseList.setAdapter(adapter);
+        courseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> adapterView,final View view,final int i,final long l) {
+                TextView name = (TextView) view.findViewById(R.id.txt_ingredientName);
+                String itemName = name.getText().toString();
+                //Toast.makeText(getActivity(),"View: " + itemName, Toast.LENGTH_SHORT).show();
+                Intent coursesList = new Intent(getActivity(), RecipeListIngredients.class);
+                coursesList.putExtra("ingredients", itemName);
+                startActivity(coursesList);
+            }
+        });
 
     }
 

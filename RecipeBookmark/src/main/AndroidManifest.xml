@@ -34,6 +34,12 @@
             android:parentActivityName=".MainActivity">
         </activity>
         <activity
+            android:name=".RecipeListCourses">
+        </activity>
+        <activity
+            android:name=".RecipeListIngredients">
+        </activity>
+        <activity
             android:name=".Settings">
         </activity>
     </application>
