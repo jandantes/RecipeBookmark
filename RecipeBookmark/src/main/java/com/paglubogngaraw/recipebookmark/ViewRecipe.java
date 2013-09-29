@@ -122,6 +122,9 @@ public class ViewRecipe extends Activity {
                 Intent loadSettings = new Intent(ViewRecipe.this, Settings.class);
                 ViewRecipe.this.startActivity(loadSettings);
                 break;
+            case R.id.action_refreshView:
+                ViewRecipe.this.webView.loadUrl(getIntent().getStringExtra("url"));
+                break;
             default:
                 break;
         }
