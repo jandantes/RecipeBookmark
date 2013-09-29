@@ -22,6 +22,8 @@ public class RecipeListIngredients extends Activity {
         String newTitle = getIntent().getStringExtra("ingredients");
         setTitle(newTitle);
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         recipeList = (ListView) findViewById(R.id.listView_recipeList);
 
         String[] from = new String[]{
@@ -55,7 +57,15 @@ public class RecipeListIngredients extends Activity {
                 startActivity(viewRecipe);
             }
         });
-
-
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 }

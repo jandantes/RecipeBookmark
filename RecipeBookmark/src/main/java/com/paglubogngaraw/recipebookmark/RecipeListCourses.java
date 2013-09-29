@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -19,6 +20,8 @@ public class RecipeListCourses extends Activity {
         setContentView(R.layout.activity_recipelist);
         String newTitle = getIntent().getStringExtra("course");
         setTitle(newTitle);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         recipeList = (ListView) findViewById(R.id.listView_recipeList);
 
@@ -53,5 +56,15 @@ public class RecipeListCourses extends Activity {
                 startActivity(viewRecipe);
             }
         });
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 }
