@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/label_settings_offline">
     <CheckBoxPreference
-        android:defaultValue="true"
         android:key="settingsOfflineView"
         android:title="@string/label_settings_offline_title"/>
 

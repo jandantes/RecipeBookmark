@@ -1,10 +1,12 @@
 package com.paglubogngaraw.recipebookmark;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.app.Activity;
+import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,20 +53,29 @@ public class ViewRecipe extends Activity {
             }
         });
 
+        String settingsTag = "Settings";
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean cache = prefs.getBoolean("settingsOfflineView",false);
         WebSettings ws = webView.getSettings();
-        ws.setAppCacheMaxSize(5 * 1024 * 1024); //5MB
-        ws.setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath());
-        ws.setAllowFileAccess(true);
-        ws.setAppCacheEnabled(true);
+
         ws.setCacheMode(WebSettings.LOAD_DEFAULT); //load online site by default
+        if(cache){
+            ws.setAppCacheMaxSize(5 * 1024 * 1024); //5MB
+            ws.setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath());
+            ws.setAllowFileAccess(true);
+            ws.setAppCacheEnabled(true);
+            if(!isNetworkAvailable()){ //load offline site
+                ws.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+            }
+        }else {
+            ws.setAppCacheEnabled(false);
+            webView.clearCache(true);
+        }
+
         ws.setJavaScriptEnabled(true);
         ws.setBuiltInZoomControls(true);
         ws.setDisplayZoomControls(false);
         ws.setUseWideViewPort(true);
-
-        if(!isNetworkAvailable()){ //load offline site
-            ws.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        }
 
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(recipeUrl);
