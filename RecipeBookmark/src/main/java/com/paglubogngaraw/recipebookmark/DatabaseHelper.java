@@ -13,13 +13,13 @@ import android.util.Patterns;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_RECIPES = "recipes";
-    public static final String COL_ID = BaseColumns._ID;
+    public static final String COL_ID = "_id";
     public static final String COL_RECIPE_NAME = "recipeName";
     public static final String COL_RECIPE_URL = "recipeUrl";
     public static final String COL_RECIPE_COURSE = "recipeCourse";
     public static final String COL_RECIPE_INGREDIENT = "recipeIngredient";
     private static final String DATABASE_NAME = "recipe_bookmark.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -82,6 +82,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor query(String tableName, String orderedBy) {
         String[] projection = {COL_ID, COL_RECIPE_NAME, COL_RECIPE_URL, COL_RECIPE_COURSE, COL_RECIPE_INGREDIENT};
         return getReadableDatabase().query(tableName, projection, null, null, null, null, orderedBy);
+    }
+
+    public Cursor category(String recipeCategory, String recipeType) {
+        return getReadableDatabase().rawQuery("SELECT * FROM recipes WHERE "+ recipeCategory + " = '" + recipeType + "'", null);
     }
 
 
