@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by jan.dantes on 9/26/13.
@@ -120,6 +121,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             case R.id.action_addRecipe:
                 Intent loadAddRecipe = new Intent(MainActivity.this, AddRecipe.class);
                 MainActivity.this.startActivity(loadAddRecipe);
+                break;
+            case R.id.action_settings:
+                Intent loadSettings = new Intent(MainActivity.this, Settings.class);
+                MainActivity.this.startActivity(loadSettings);
                 break;
             default:
                 break;
