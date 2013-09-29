@@ -26,12 +26,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ViewRecipe"
-            android:parentActivityName=".MainActivity">
+            android:name=".ViewRecipe">
         </activity>
         <activity
-            android:name=".AddRecipe"
-            android:parentActivityName=".MainActivity">
+            android:name=".AddRecipe">
         </activity>
         <activity
             android:name=".RecipeListCourses">
