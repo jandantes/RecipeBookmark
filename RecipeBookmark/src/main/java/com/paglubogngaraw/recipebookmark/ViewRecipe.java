@@ -118,6 +118,10 @@ public class ViewRecipe extends Activity {
             case android.R.id.home:
                 onBackPressed();
                 break;
+            case R.id.action_settings:
+                Intent loadSettings = new Intent(ViewRecipe.this, Settings.class);
+                ViewRecipe.this.startActivity(loadSettings);
+                break;
             default:
                 break;
         }

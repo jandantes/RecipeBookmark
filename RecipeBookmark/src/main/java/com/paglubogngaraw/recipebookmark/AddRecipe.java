@@ -65,6 +65,10 @@ public class AddRecipe extends Activity implements DialogInterface.OnClickListen
             case android.R.id.home:
                 onBackPressed();
                 break;
+            case R.id.action_settings:
+                Intent loadSettings = new Intent(AddRecipe.this, Settings.class);
+                AddRecipe.this.startActivity(loadSettings);
+                break;
             default:
                 break;
         }

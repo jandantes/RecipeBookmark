@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -57,10 +59,20 @@ public class RecipeListIngredients extends Activity {
             }
         });
     }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings, menu);
+        return true;
+    }
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case android.R.id.home:
                 onBackPressed();
+                break;
+            case R.id.action_settings:
+                Intent loadSettings = new Intent(RecipeListIngredients.this, Settings.class);
+                RecipeListIngredients.this.startActivity(loadSettings);
                 break;
             default:
                 break;
