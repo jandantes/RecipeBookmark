@@ -57,6 +57,7 @@ public class RecipeList extends Fragment{
 
         //ListView using RecipeItemAdapter
         recipeList.setAdapter(adapter);
+        recipeList.setEmptyView(getActivity().findViewById(R.id.emptyList));
         recipeList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         recipeList.setSelector(R.drawable.list_selector);
         recipeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
