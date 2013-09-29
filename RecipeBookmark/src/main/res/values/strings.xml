@@ -29,6 +29,7 @@
     <string name="label_recipeIngredient">Main Ingredient</string>
     <string name="label_settings_offline">Offline Viewing</string>
     <string name="label_settings_offline_title">Enable Offline Viewing</string>
+    <string name="label_listEmpty">No recipes found.</string>
 
     <string name="char_divider">|</string>
 
