@@ -53,7 +53,6 @@ public class ViewRecipe extends Activity {
             }
         });
 
-        String settingsTag = "Settings";
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         boolean cache = prefs.getBoolean("settingsOfflineView",false);
         WebSettings ws = webView.getSettings();
