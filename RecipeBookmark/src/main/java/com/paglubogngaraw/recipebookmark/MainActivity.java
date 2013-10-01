@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.androidquery.util.AQUtility;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,5 +131,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 break;
         }
         return true;
+    }
+
+    //clear cache on exit
+    protected void onDestroy(){
+        super.onDestroy();
+        if(isTaskRoot()){
+            long triggerSize = 3000000; //starts cleaning when cache size is larger than 3M
+            long targetSize = 2000000;      //remove the least recently used files until cache size is less than 2M
+            AQUtility.cleanCacheAsync(this, triggerSize, targetSize);
+        }
     }
 }
