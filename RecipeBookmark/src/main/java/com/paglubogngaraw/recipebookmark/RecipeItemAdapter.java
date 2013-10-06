@@ -38,7 +38,7 @@ public class RecipeItemAdapter extends SimpleCursorAdapter {
     String queryKey = "&api_key=";
     String queryText = "&text=";
     String queryContentType = "&content_type=1";
-    String apiKey = "";
+    String apiKey = "0fdf12aa0ea8d1fab85a0ac772d59edd";
 
     public RecipeItemAdapter(Context context,int layout, Cursor c,String[] from,int[] to)  {
         super(context, layout, c, from, to, 0);

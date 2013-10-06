@@ -39,7 +39,6 @@ public class ViewRecipe extends Activity {
         setTitle(recipeName);
 
         webView = (WebView) findViewById(R.id.webView_viewRecipe);
-
         webView.setWebChromeClient(new WebChromeClient(){
             public void onProgressChanged(WebView view, int newProgress){
                 ViewRecipe.this.setValue(newProgress);
@@ -53,8 +52,10 @@ public class ViewRecipe extends Activity {
             }
         });
 
+        //settings set defaults
+        PreferenceManager.setDefaultValues(this, R.xml.settings, false);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean cache = prefs.getBoolean("settingsOfflineView",false);
+        boolean cache = prefs.getBoolean("settingsOfflineView",true);
         WebSettings ws = webView.getSettings();
 
         ws.setCacheMode(WebSettings.LOAD_DEFAULT); //load online site by default

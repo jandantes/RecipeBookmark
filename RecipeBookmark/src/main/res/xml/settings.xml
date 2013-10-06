@@ -6,6 +6,7 @@
 
     <PreferenceCategory android:title="@string/title_settings_offline" />
     <CheckBoxPreference
+        android:defaultValue="true"
         android:key="settingsOfflineView"
         android:title="@string/label_settings_offline_title"/>
 
