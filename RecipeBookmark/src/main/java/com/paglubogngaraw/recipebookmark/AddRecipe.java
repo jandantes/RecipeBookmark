@@ -95,6 +95,7 @@ public class AddRecipe extends Activity implements DialogInterface.OnClickListen
         }catch (DatabaseHelper.NotValidException e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+        rec.close();
     }
 
 
