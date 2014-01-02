@@ -6,4 +6,4 @@ Android (4.0+ only) Recipe bookmarking app.
 
 Screenshot:
 
-![Screenshot](https://github.com/jandantes/RecipeBookmark/diff_blob/b58db69c66b1eaa07be6d59ab43eae2df6a8c741/RecipeBookmark/screenshots/Screenshot_2013-09-27-13-25-31.png?raw=true)
+![Screenshot](https://github.com/jandantes/RecipeBookmark/blob/a4ffffddec083b9f31483f8a4ec7a9edbbe19d55/RecipeBookmark/screenshots/Screenshot.png?raw=true)
